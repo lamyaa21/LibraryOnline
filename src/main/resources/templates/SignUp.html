@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Register</title>
+<!-- Font Icon -->
+    <link rel="stylesheet" th:href="@{/fonts/materialicon/css/material.min.css}">
+    <!-- Main Css -->
+    <link rel="stylesheet" th:href="@{/CSS/style1.css}">
+</head>
+<body>
+<div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">New Account</h2>
+                        <form th:action="@{/saveuser}" th:object="${user}" method="POST" class="register-form" id="register-form">
+                        
+                        <div class="form-group">
+                                <label for="nom"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="nom" id="name" placeholder="Nom"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="username" id="name" placeholder="Username"/>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="pass" placeholder="Password"/>
+                            </div>
+                            
+                             <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="/login" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+</body>
+</html>

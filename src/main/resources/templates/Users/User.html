@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Users managers</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet" th:href="@{/CSS/nouveauL.css}">
+</head>
+<body>
+<section id="cover" class="min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a href="#" class="navbar-brand">My<b>Book</b></a>  		
+	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!-- Collection of nav links, forms, and other content for toggling -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+		<div class="navbar-nav">
+			<a href="/Index" class="nav-item nav-link">Home</a>
+			<a href="/livreliste" class="nav-item nav-link">Books</a>			
+			<div class="nav-item dropdown">
+				  <a href="@{/categories}" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Categories</a>
+				  
+                            
+   
+				  <div class="dropdown-menu">					
+					<a href="#" class="dropdown-item">C++</a>
+					<a href="#" class="dropdown-item">Java</a>
+					<a href="#" class="dropdown-item">Python</a>
+					<a href="#" class="dropdown-item">Html and CSS</a>
+                </div>
+                
+            </div>
+			<a href="/User" sec:authorize="hasAnyRole('ADMIN')" class="nav-item nav-link">User Management</a>
+			<a href="/livres" sec:authorize="hasAnyRole('ADMIN')" class="nav-item nav-link">Books Management</a>
+			
+			
+			
+		</div>
+		
+		 <div class="navbar-nav ml-auto action-buttons">
+			<div class="nav-item dropdown" th:inline="text">
+				<a data-toggle="dropdown" class="nav-link dropdown-toggle mr-4">Login as [[${#httpServletRequest.remoteUser}]]</a></div>
+				<div class="nav-item dropdown" th:inline="text">
+				<a  class="nav-link dropdown-toggle mr-4" th:href="@{/login?logout}">Logout</a>
+			</div>
+			
+			</div>
+        </div>
+	
+</nav>
+<div class="container table-responsive">
+ <div class="row text-dark row justify-content-center" >
+ <div class="col-auto">
+<div class="panel panel-default">
+<div class="text-center">
+    <h1 class="py-2 text-truncate" id="h1" align="center">Listes des utilisateurs</h1>
+    </div>
+  <div class="mx-auto text-center">  
+    <table class="table table-bordered" id="tab">
+        <thead class="thead-dark">
+            <tr>
+                <th scop="col">User ID</th>
+                <th scop="col">Nom</th>
+                <th scop="col">username</th>
+                 <th scop="col">Modifier</th>
+                <th scop="col">Supprimer</th>
+              
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+            <tr th:each="user : ${listuser}" style="color:#fff ; font-size:14pt;">
+            
+                <td id="td" th:text="${user.userId}">User ID</td>
+                <td id="td" th:text="${user.nom}">Nom</td>
+               
+                <td id="td" th:text="${user.username}">Username</td>
+                
+                 <td >
+                 
+                    <a th:href="@{Users/modifieruser/{userId}(userId=${user.userId})}"><div class="text-center"><button class="btn btn-danger"><i class="fas fa-pencil-alt 7px"></i></button></div>
+                    </a>
+                    &nbsp;&nbsp;&nbsp;  
+                    </td> 
+                      <td>
+                      <a th:href="@{Users/supprimeruser/{userId}(userId=${user.userId})}"><div class="text-center"><button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt 7px"></i></button></div>
+</a>
+                     
+          </td>
+             
+            </tr> 
+         
+        </tbody>
+    </table>
+    
+    </div>
+    
+</div> 
+
+</div>  
+</div>
+</div>
+
+
+</section>
+</body>
+</html>
